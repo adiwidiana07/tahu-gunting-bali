@@ -120,7 +120,7 @@ const socialLabel = { instagram: 'Instagram', tiktok: 'TikTok' } as const;
             <path d="M520 -20 L540 420" stroke-width="6" />
           </g>
         </svg>
-        <div class="relative grid h-full min-h-80 place-content-center justify-items-center gap-5 p-6 text-center">
+        <div data-map-overlay class="relative grid h-full min-h-80 place-content-center justify-items-center gap-5 p-6 text-center">
           <span class="grid size-16 place-items-center rounded-full bg-chili text-white shadow-xl shadow-chili/30">
             <Icon name="map-pin" size={30} />
           </span>
@@ -138,3 +138,7 @@ const socialLabel = { instagram: 'Instagram', tiktok: 'TikTok' } as const;
     </div>
   </div>
 </section>
+
+<script>
+  import '../scripts/map';
+</script>

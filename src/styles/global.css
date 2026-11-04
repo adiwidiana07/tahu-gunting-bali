@@ -68,6 +68,11 @@
     text-wrap: pretty;
   }
 
+  /* Kunci scroll halaman saat lightbox terbuka */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
   :focus-visible {
     outline: 3px solid var(--color-gold);
     outline-offset: 3px;
