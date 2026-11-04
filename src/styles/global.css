@@ -95,7 +95,7 @@
 }
 
 @utility eyebrow {
-  @apply text-sm font-bold tracking-[0.14em] text-chili uppercase;
+  @apply text-sm font-bold tracking-[0.14em] uppercase;
 }
 
 @utility section-title {

@@ -23,8 +23,6 @@ const jobs = [
   { out: 'src/assets/gallery/04-proses-menggoreng.jpg', scene: 'wok', w: 1200, h: 1500, seed: 4 },
   { out: 'src/assets/gallery/05-tahu-gunting-bungkus.jpg', scene: 'paper', w: 1200, h: 1500, seed: 13 },
   { out: 'src/assets/gallery/06-porsi-jumbo.jpg', scene: 'plate', w: 1200, h: 1500, seed: 42 },
-  { out: 'src/assets/gallery/07-tahu-pedas.jpg', scene: 'closeup', w: 1200, h: 1500, seed: 77 },
-  { out: 'src/assets/gallery/08-siap-diantar.jpg', scene: 'paper', w: 1200, h: 1500, seed: 99 },
   {
     out: 'public/og-image.jpg', scene: 'og', w: 1200, h: 630, seed: 6,
     extra: { title: process.env.OG_TITLE ?? 'Tahu Gunting Pak Made', sub: process.env.OG_SUB ?? 'Renyah di luar, lembut di dalam. Bumbu kacang racikan sendiri.' },

@@ -16,8 +16,6 @@ import gallery03 from '../assets/gallery/03-bumbu-kacang.jpg';
 import gallery04 from '../assets/gallery/04-proses-menggoreng.jpg';
 import gallery05 from '../assets/gallery/05-tahu-gunting-bungkus.jpg';
 import gallery06 from '../assets/gallery/06-porsi-jumbo.jpg';
-import gallery07 from '../assets/gallery/07-tahu-pedas.jpg';
-import gallery08 from '../assets/gallery/08-siap-diantar.jpg';
 
 /* ---------- Tipe data (tidak perlu diubah) ---------- */
 
@@ -145,7 +143,7 @@ export const site = {
     { name: 'Porsi Jumbo', description: 'Untuk 3–4 orang', price: 25000 },
   ] satisfies MenuItem[],
 
-  // Foto galeri: 6–12 foto, rasio potret 4:5 paling pas. Urutan di sini = urutan tampil.
+  // Foto galeri: 6 atau 12 foto (kelipatan 6 agar grid selalu penuh), rasio potret 4:5 paling pas. Urutan di sini = urutan tampil.
   // TODO: ganti dengan foto asli (simpan di src/assets/gallery/) dan perbarui alt-nya
   gallery: [
     { src: gallery01, alt: 'Tahu gunting original dengan siraman bumbu kacang di piring putih' },
@@ -154,8 +152,6 @@ export const site = {
     { src: gallery04, alt: 'Potongan tahu sedang digoreng di wajan berisi minyak panas' },
     { src: gallery05, alt: 'Tahu gunting dibungkus kertas nasi, siap dibawa pulang' },
     { src: gallery06, alt: 'Tahu gunting porsi jumbo untuk dimakan bersama' },
-    { src: gallery07, alt: 'Tahu gunting pedas dengan taburan cabai' },
-    { src: gallery08, alt: 'Pesanan tahu gunting yang sudah dibungkus dan siap diantar' },
   ] satisfies Photo[],
 
   // TODO: akun media sosial asli. Hapus baris yang tidak dipakai.

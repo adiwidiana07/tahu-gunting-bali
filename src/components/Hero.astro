@@ -1,0 +1,53 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import { formatTime, whatsappUrl } from '../lib/links';
+
+const today = site.hours[0];
+---
+
+<section id="home" class="relative isolate flex min-h-svh items-end overflow-hidden bg-ink text-white md:items-center">
+  <Picture
+    src={site.hero.image.src}
+    alt={site.hero.image.alt}
+    formats={['avif', 'webp']}
+    widths={[640, 960, 1280, 1920, 2400]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+    class="absolute inset-0 -z-20 size-full object-cover object-[68%_50%]"
+  />
+  <div class="absolute inset-0 -z-10 bg-linear-to-t from-ink via-ink/70 to-ink/35 md:bg-linear-to-r md:from-ink/95 md:via-ink/60 md:to-ink/10"></div>
+
+  <div class="container-page pt-28 pb-14 md:py-32">
+    <p class="eyebrow text-gold">Jajanan khas {site.address.city} · {site.address.region}</p>
+    <h1 class="mt-4 max-w-2xl text-[2.6rem] leading-[1.04] font-semibold sm:text-5xl md:text-6xl lg:text-7xl">
+      {site.hero.title}
+    </h1>
+    <p class="mt-5 max-w-xl text-lg leading-relaxed text-cream/90 md:text-xl">{site.hero.subtitle}</p>
+
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a href={whatsappUrl()} class="btn-primary" target="_blank" rel="noopener">
+        <Icon name="whatsapp" size={22} /> Pesan via WhatsApp
+      </a>
+      <a href="#gallery" class="btn-outline-light">Lihat Galeri</a>
+    </div>
+
+    {
+      today && (
+        <p class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-cream/85">
+          <span class="inline-flex items-center gap-2">
+            <Icon name="clock" size={18} class="text-gold" />
+            {today.label}, {formatTime(today.opens)}–{formatTime(today.closes)} WITA
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <Icon name="map-pin" size={18} class="text-gold" />
+            {site.address.city}, {site.address.region}
+          </span>
+        </p>
+      )
+    }
+  </div>
+</section>

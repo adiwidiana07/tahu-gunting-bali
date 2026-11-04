@@ -1,0 +1,76 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import { whatsappUrl } from '../lib/links';
+
+const links = [
+  { href: '#about', label: 'Tentang' },
+  { href: '#gallery', label: 'Galeri' },
+  { href: '#contact', label: 'Kontak' },
+];
+---
+
+<!--
+  Tanpa JavaScript header selalu berlatar krem (aman dibaca).
+  Dengan JavaScript: transparan di atas foto hero, berlatar blur setelah di-scroll.
+-->
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 bg-cream/90 text-ink shadow-sm backdrop-blur-md transition-[background-color,color,box-shadow] duration-300 data-[top=true]:bg-transparent data-[top=true]:text-white data-[top=true]:shadow-none data-[top=true]:backdrop-blur-none"
+>
+  <nav aria-label="Navigasi utama" class="container-page flex h-16 items-center justify-between gap-4 md:h-20">
+    <a href="#home" class="flex items-center gap-2.5 rounded-lg font-display text-lg leading-tight font-semibold md:text-xl">
+      <img src="/favicon.svg" alt="" width="36" height="36" class="size-9 shrink-0" />
+      <span>{site.name}</span>
+    </a>
+
+    <ul class="hidden items-center gap-8 font-semibold md:flex">
+      {links.map((l) => <li><a href={l.href} class="rounded py-2 underline-offset-8 decoration-gold decoration-2 hover:underline">{l.label}</a></li>)}
+      <li>
+        <a href={whatsappUrl()} class="btn-primary min-h-11 px-5 py-2 text-sm" target="_blank" rel="noopener">
+          <Icon name="whatsapp" size={18} /> Pesan
+        </a>
+      </li>
+    </ul>
+
+    <button
+      type="button"
+      popovertarget="mobile-menu"
+      class="-mr-2 grid size-12 place-items-center rounded-full md:hidden"
+      aria-label="Buka menu"
+      aria-controls="mobile-menu"
+    >
+      <Icon name="menu" size={26} />
+    </button>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    popover
+    class="m-0 mt-[4.5rem] mr-4 ml-auto w-[min(20rem,calc(100vw-2rem))] rounded-2xl bg-cream p-3 text-ink shadow-2xl ring-1 ring-ink/10 backdrop:bg-ink/40 md:hidden"
+  >
+    <div class="flex items-center justify-between px-3 pt-1 pb-2">
+      <span class="text-xs font-bold tracking-[0.14em] text-ink-soft uppercase">Menu</span>
+      <button type="button" popovertarget="mobile-menu" popovertargetaction="hide" class="grid size-11 place-items-center rounded-full hover:bg-sand" aria-label="Tutup menu">
+        <Icon name="x" size={22} />
+      </button>
+    </div>
+    <ul class="grid gap-1 text-lg font-semibold">
+      {links.map((l) => <li><a href={l.href} data-close-menu class="block rounded-xl px-3 py-3 hover:bg-sand">{l.label}</a></li>)}
+    </ul>
+    <a href={whatsappUrl()} class="btn-primary mt-3 w-full" target="_blank" rel="noopener" data-close-menu>
+      <Icon name="whatsapp" size={20} /> Pesan via WhatsApp
+    </a>
+  </div>
+</header>
+
+<script is:inline>
+  // Jalan seketika (tanpa menunggu) agar header tidak berkedip saat halaman dimuat.
+  (() => {
+    const h = document.getElementById('site-header');
+    if (!h) return;
+    const update = () => (h.dataset.top = String(window.scrollY < 24));
+    update();
+    addEventListener('scroll', update, { passive: true });
+  })();
+</script>

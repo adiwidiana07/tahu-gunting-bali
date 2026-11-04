@@ -1,0 +1,74 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+import Ornament from './Ornament.astro';
+import { site } from '../data/site';
+import { formatRupiah } from '../lib/links';
+
+const { about, menu } = site;
+---
+
+<section id="about" aria-labelledby="about-title" class="py-20 md:py-28">
+  <div class="container-page grid items-center gap-12 md:grid-cols-2 lg:gap-20">
+    <div class="reveal relative mx-auto w-full max-w-md md:max-w-none">
+      <div class="absolute -inset-3 -z-10 translate-x-4 translate-y-4 rounded-[2rem] border-2 border-gold/60" aria-hidden="true"></div>
+      <Picture
+        src={about.image.src}
+        alt={about.image.alt}
+        formats={['avif', 'webp']}
+        widths={[400, 600, 800, 1000]}
+        sizes="(min-width: 1152px) 520px, (min-width: 768px) 45vw, min(100vw - 2rem, 28rem)"
+        loading="lazy"
+        decoding="async"
+        class="aspect-[4/5] w-full rounded-2xl object-cover shadow-xl shadow-ink/15"
+      />
+    </div>
+
+    <div class="reveal">
+      <p class="eyebrow text-chili">Tentang kami</p>
+      <h2 id="about-title" class="section-title">{about.title}</h2>
+      <div class="mt-6 space-y-4 text-lg leading-relaxed text-ink-soft">
+        {about.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+
+      <ul class="mt-10 grid gap-5">
+        {
+          about.highlights.map((h) => (
+            <li class="flex gap-4">
+              <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-gold/20 text-leaf">
+                <Icon name={h.icon} size={24} />
+              </span>
+              <div>
+                <h3 class="font-sans text-lg font-bold text-ink">{h.title}</h3>
+                <p class="text-ink-soft">{h.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  {
+    menu.length > 0 && (
+      <div class="container-page mt-20 md:mt-28">
+        <div class="reveal rounded-[2rem] bg-sand px-5 py-10 md:px-12 md:py-14">
+          <Ornament />
+          <h3 class="mt-4 text-center text-2xl font-semibold text-leaf md:text-3xl">Menu &amp; harga</h3>
+          <ul class="mx-auto mt-8 grid max-w-4xl gap-x-12 gap-y-6 md:grid-cols-2">
+            {menu.map((item) => (
+              <li class="flex items-baseline gap-3">
+                <div class="min-w-0 flex-1 sm:flex-initial">
+                  <p class="text-lg font-bold">{item.name}</p>
+                  {item.description && <p class="text-sm text-ink-soft">{item.description}</p>}
+                </div>
+                <span class="mb-1.5 hidden min-w-6 flex-1 self-end border-b-2 sm:block border-dotted border-ink/25" aria-hidden="true" />
+                <p class="shrink-0 font-display text-xl font-semibold text-chili">{formatRupiah(item.price)}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+</section>
