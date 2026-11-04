@@ -1,0 +1,246 @@
+<!doctype html>
+<!--
+  Generator foto contoh (placeholder) untuk landing page.
+  Dirender oleh scripts/placeholders/generate.mjs memakai Chrome headless.
+  Ganti hasilnya dengan foto asli; file ini tidak ikut ke situs.
+-->
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face { font-family: Fraunces; src: url("../../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2"); font-weight: 100 900; }
+  @font-face { font-family: Jakarta; src: url("../../node_modules/@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2"); font-weight: 200 800; }
+  html, body { margin: 0; padding: 0; overflow: hidden; background: #1c1410; }
+  svg { display: block; }
+  .tag { position: fixed; right: 2.2vmin; bottom: 2.2vmin; font: 600 max(13px, 1.9vmin)/1 Jakarta, sans-serif;
+         color: #fff8ec; background: rgb(43 29 20 / .72); padding: .6em .9em; border-radius: 999px; letter-spacing: .02em; }
+  .og { position: fixed; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 70px; color: #fff8ec; }
+  .og small { font: 700 22px Jakarta, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #e8a33d; }
+  .og h1 { font: 650 76px/1.02 Fraunces, serif; margin: 18px 0 20px; max-width: 640px; }
+  .og p { font: 500 28px/1.35 Jakarta, sans-serif; margin: 0; max-width: 560px; color: #f6e9d2; }
+  .og .pill { margin-top: 34px; align-self: flex-start; font: 700 24px Jakarta, sans-serif; background: #c0392b; padding: 14px 26px; border-radius: 999px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const q = new URLSearchParams(location.search);
+const W = +q.get('w') || 1200, H = +q.get('h') || 1500;
+const scene = q.get('scene') || 'plate';
+let seed = +q.get('seed') || 1;
+const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+const r = (a, b) => a + rnd() * (b - a);
+const S = Math.min(W, H);
+
+const defs = `
+<defs>
+  <radialGradient id="fry" cx="45%" cy="40%" r="75%">
+    <stop offset="0" stop-color="#f7cf72"/><stop offset=".55" stop-color="#e8a33d"/><stop offset="1" stop-color="#b8661c"/>
+  </radialGradient>
+  <radialGradient id="fryDark" cx="45%" cy="40%" r="75%">
+    <stop offset="0" stop-color="#eebc58"/><stop offset=".6" stop-color="#d68b2c"/><stop offset="1" stop-color="#9c5214"/>
+  </radialGradient>
+  <linearGradient id="inside" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#fff3d6"/><stop offset="1" stop-color="#f4dca8"/>
+  </linearGradient>
+  <radialGradient id="plate" cx="50%" cy="45%" r="55%">
+    <stop offset="0" stop-color="#fffaf1"/><stop offset=".85" stop-color="#f3e6cf"/><stop offset="1" stop-color="#d9c6a6"/>
+  </radialGradient>
+  <radialGradient id="sauce" cx="45%" cy="40%" r="70%">
+    <stop offset="0" stop-color="#a8622a"/><stop offset=".7" stop-color="#7a3f17"/><stop offset="1" stop-color="#5b2c0e"/>
+  </radialGradient>
+  <radialGradient id="wok" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#5a4a3a"/><stop offset=".7" stop-color="#2b231c"/><stop offset="1" stop-color="#14100c"/>
+  </radialGradient>
+  <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#3f8a4f"/><stop offset=".5" stop-color="#2f6b3f"/><stop offset="1" stop-color="#22502f"/>
+  </linearGradient>
+  <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#6b4528"/><stop offset="1" stop-color="#4a2e1a"/>
+  </linearGradient>
+  <filter id="crisp" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="3" seed="7" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.22  0 0 0 0 0.05  0 0 0 1.4 -0.55" result="spots"/>
+    <feComposite in="spots" in2="SourceGraphic" operator="in" result="tex"/>
+    <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="tex"/></feMerge>
+  </filter>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="3"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .07 0"/></filter>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="${S * 0.012}"/><feOffset dx="${S * 0.006}" dy="${S * 0.012}"/>
+    <feComponentTransfer><feFuncA type="linear" slope=".45"/></feComponentTransfer>
+    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
+    <stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/>
+  </radialGradient>
+</defs>`;
+
+function leafBg() {
+  let s = `<rect width="${W}" height="${H}" fill="url(#leaf)"/>`;
+  const step = S * 0.055;
+  for (let i = -H; i < W + H; i += step) {
+    s += `<line x1="${i}" y1="0" x2="${i - H * 0.55}" y2="${H}" stroke="#1d4428" stroke-opacity="${r(.18, .32)}" stroke-width="${r(1, 3)}"/>`;
+  }
+  s += `<line x1="${W * 0.08}" y1="0" x2="${W * 0.08 - H * 0.55}" y2="${H}" stroke="#a6c98a" stroke-opacity=".35" stroke-width="${S * 0.012}"/>`;
+  return s;
+}
+
+function woodBg() {
+  let s = `<rect width="${W}" height="${H}" fill="url(#wood)"/>`;
+  for (let y = 0; y < H; y += S * 0.11) {
+    s += `<rect x="0" y="${y}" width="${W}" height="${S * 0.004}" fill="#2a190e" opacity=".55"/>`;
+    for (let k = 0; k < 6; k++) {
+      const yy = y + r(0, S * 0.1);
+      s += `<path d="M0 ${yy} C ${W * .3} ${yy + r(-8, 8)}, ${W * .6} ${yy + r(-8, 8)}, ${W} ${yy}" stroke="#7d5433" stroke-opacity="${r(.2, .45)}" stroke-width="${r(1, 2.5)}" fill="none"/>`;
+    }
+  }
+  return s;
+}
+
+function tofu(cx, cy, size, rot, dark) {
+  const n = 4 + Math.floor(rnd() * 3);
+  const pts = [];
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2 + r(-0.25, 0.25);
+    const rr = size * r(0.42, 0.62);
+    pts.push([Math.cos(a) * rr, Math.sin(a) * rr]);
+  }
+  const d = 'M' + pts.map(p => p.map(v => v.toFixed(1)).join(' ')).join(' L') + 'Z';
+  const cut = rnd() < 0.45;
+  let g = `<g transform="translate(${cx} ${cy}) rotate(${rot})" filter="url(#shadow)">`;
+  g += `<path d="${d}" fill="url(#${dark ? 'fryDark' : 'fry'})" stroke="url(#${dark ? 'fryDark' : 'fry'})" stroke-width="${size * 0.16}" stroke-linejoin="round" filter="url(#crisp)"/>`;
+  if (cut) {
+    const w = size * r(.32, .5), h = size * r(.22, .36);
+    g += `<rect x="${-w / 2 + r(-4, 4)}" y="${-h / 2 + r(-4, 4)}" width="${w}" height="${h}" rx="${size * .06}" fill="url(#inside)" opacity=".95"/>`;
+  }
+  g += `<path d="M${-size * .25} ${-size * .3} q ${size * .2} ${-size * .08} ${size * .4} 0" stroke="#fff3c4" stroke-opacity=".55" stroke-width="${size * .05}" fill="none" stroke-linecap="round"/>`;
+  return g + `</g>`;
+}
+
+function pile(cx, cy, radius, count, scale = 1) {
+  let s = '';
+  for (let i = 0; i < count; i++) {
+    const a = r(0, Math.PI * 2), d = Math.sqrt(rnd()) * radius;
+    s += tofu(cx + Math.cos(a) * d, cy + Math.sin(a) * d, S * r(.085, .12) * scale, r(0, 360), rnd() < .35);
+  }
+  return s;
+}
+
+function chili(cx, cy, rad) {
+  return `<g transform="translate(${cx} ${cy})"><circle r="${rad}" fill="#c0392b"/><circle r="${rad * .62}" fill="#e2593f"/>
+    <circle r="${rad * .14}" cx="${rad * .2}" fill="#f6d27a"/><circle r="${rad * .12}" cx="${-rad * .18}" cy="${rad * .15}" fill="#f6d27a"/></g>`;
+}
+
+function drizzle(cx, cy, w) {
+  let s = '';
+  for (let i = 0; i < 3; i++) {
+    const y = cy + r(-w * .25, w * .25);
+    s += `<path d="M${cx - w / 2} ${y} C ${cx - w / 6} ${y - w * .25}, ${cx + w / 6} ${y + w * .25}, ${cx + w / 2} ${y + r(-20, 20)}"
+      stroke="#6b3412" stroke-width="${S * .018}" stroke-linecap="round" fill="none" opacity=".9"/>`;
+  }
+  return s;
+}
+
+function plate(cx, cy, rad) {
+  return `<g filter="url(#shadow)"><circle cx="${cx}" cy="${cy}" r="${rad}" fill="url(#plate)"/></g>
+    <circle cx="${cx}" cy="${cy}" r="${rad * .8}" fill="none" stroke="#e1cfae" stroke-width="${rad * .015}"/>`;
+}
+
+function sauceBowl(cx, cy, rad) {
+  return `<g filter="url(#shadow)"><circle cx="${cx}" cy="${cy}" r="${rad}" fill="#efe2c8"/></g>
+    <circle cx="${cx}" cy="${cy}" r="${rad * .84}" fill="url(#sauce)"/>
+    <path d="M${cx - rad * .4} ${cy - rad * .3} q ${rad * .3} ${-rad * .15} ${rad * .55} ${-rad * .02}" stroke="#d99a5b" stroke-opacity=".6" stroke-width="${rad * .06}" fill="none" stroke-linecap="round"/>
+    ${chili(cx + rad * .25, cy + rad * .2, rad * .14)}${chili(cx - rad * .2, cy + rad * .32, rad * .11)}`;
+}
+
+function scissors(cx, cy, size, rot) {
+  return `<g transform="translate(${cx} ${cy}) rotate(${rot})" filter="url(#shadow)" opacity=".95">
+    <path d="M0 0 L ${size * 1.3} ${-size * .12} L ${size * 1.3} ${-size * .02} Z" fill="#cfd4d8"/>
+    <path d="M0 0 L ${size * 1.3} ${size * .12} L ${size * 1.3} ${size * .02} Z" fill="#b6bcc1"/>
+    <circle cx="${-size * .35}" cy="${-size * .2}" r="${size * .2}" fill="none" stroke="#c0392b" stroke-width="${size * .08}"/>
+    <circle cx="${-size * .35}" cy="${size * .2}" r="${size * .2}" fill="none" stroke="#c0392b" stroke-width="${size * .08}"/>
+    <circle r="${size * .05}" fill="#555"/></g>`;
+}
+
+function leafGarnish(cx, cy, size, rot) {
+  return `<g transform="translate(${cx} ${cy}) rotate(${rot})"><path d="M0 0 C ${size * .4} ${-size * .35}, ${size} ${-size * .3}, ${size * 1.2} 0 C ${size} ${size * .3}, ${size * .4} ${size * .35}, 0 0Z" fill="#4c9a58"/>
+    <path d="M0 0 L ${size * 1.15} 0" stroke="#2f6b3f" stroke-width="${size * .04}"/></g>`;
+}
+
+let body = '';
+const cx = W / 2, cy = H / 2;
+switch (scene) {
+  case 'hero': {
+    body += woodBg();
+    const px = W * .66, py = H * .52, pr = S * .42;
+    body += plate(px, py, pr) + pile(px, py, pr * .5, 14, 1.15) + drizzle(px, py, pr * .9);
+    body += chili(px + pr * .3, py - pr * .45, S * .025) + chili(px - pr * .35, py + pr * .4, S * .02);
+    body += sauceBowl(W * .2, H * .82, S * .14) + leafGarnish(W * .93, H * .15, S * .14, 140);
+    body += scissors(W * .36, H * .15, S * .14, 20);
+    break;
+  }
+  case 'plate': {
+    body += leafBg();
+    body += plate(cx, cy, S * .4) + pile(cx, cy, S * .2, 11) + drizzle(cx, cy, S * .4);
+    body += chili(cx + S * .12, cy - S * .2, S * .025);
+    break;
+  }
+  case 'closeup': {
+    body += `<rect width="${W}" height="${H}" fill="#3a2414"/>`;
+    for (let i = 0; i < 26; i++) body += tofu(r(0, W), r(0, H), S * r(.2, .3), r(0, 360), rnd() < .4);
+    break;
+  }
+  case 'sauce': {
+    body += woodBg();
+    body += sauceBowl(cx, cy - S * .05, S * .3) + pile(cx, cy + S * .38, S * .12, 5, .9);
+    body += leafGarnish(cx - S * .38, cy - S * .3, S * .16, 30);
+    break;
+  }
+  case 'wok': {
+    body += `<rect width="${W}" height="${H}" fill="#1c1410"/>`;
+    body += `<circle cx="${cx}" cy="${cy}" r="${S * .46}" fill="url(#wok)"/><circle cx="${cx}" cy="${cy}" r="${S * .36}" fill="#c98a2f" opacity=".55"/>`;
+    for (let i = 0; i < 40; i++) body += `<circle cx="${cx + r(-S * .3, S * .3)}" cy="${cy + r(-S * .3, S * .3)}" r="${r(2, 7)}" fill="#ffe7a8" opacity="${r(.3, .7)}"/>`;
+    body += pile(cx, cy, S * .22, 9, .9);
+    break;
+  }
+  case 'paper': {
+    body += leafBg();
+    body += `<g filter="url(#shadow)"><rect x="${cx - S * .36}" y="${cy - S * .3}" width="${S * .72}" height="${S * .6}" rx="${S * .03}" fill="#f1e1c2" transform="rotate(-6 ${cx} ${cy})"/></g>`;
+    body += pile(cx, cy, S * .18, 10) + drizzle(cx, cy + S * .02, S * .36) + scissors(cx + S * .3, cy + S * .36, S * .12, -150);
+    break;
+  }
+  case 'about': {
+    body += woodBg();
+    body += `<rect x="${W * .08}" y="${H * .1}" width="${W * .84}" height="${H * .5}" rx="${S * .04}" fill="#f1e1c2" filter="url(#shadow)"/>`;
+    for (let i = 0; i < 4; i++) body += `<rect x="${W * .14 + i * W * .19}" y="${H * .17}" width="${W * .16}" height="${W * .16}" rx="${S * .015}" fill="#fffaf0" stroke="#e7d3ad" stroke-width="3" filter="url(#shadow)"/>`;
+    body += scissors(W * .5, H * .45, S * .2, -10);
+    body += plate(W * .5, H * .8, S * .3) + pile(W * .5, H * .8, S * .14, 8, .9);
+    break;
+  }
+  case 'og': {
+    body += woodBg() + `<rect width="${W}" height="${H}" fill="#1c1410" opacity=".35"/>`;
+    const px = W * .8, py = H * .55, pr = H * .5;
+    body += plate(px, py, pr) + pile(px, py, pr * .5, 11, 1.1) + drizzle(px, py, pr * .9);
+    body += `<rect width="${W * .62}" height="${H}" fill="url(#ogFade)"/>`;
+    break;
+  }
+}
+
+const ogFade = `<defs><linearGradient id="ogFade" x1="0" x2="1"><stop offset="0" stop-color="#1c1410" stop-opacity=".95"/><stop offset=".75" stop-color="#1c1410" stop-opacity=".75"/><stop offset="1" stop-color="#1c1410" stop-opacity="0"/></linearGradient></defs>`;
+document.getElementById('root').innerHTML =
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${defs}${ogFade}${body}
+   <rect width="${W}" height="${H}" fill="url(#vignette)"/><rect width="${W}" height="${H}" filter="url(#grain)"/></svg>`;
+
+if (scene === 'og') {
+  const t = q.get('title') || 'Tahu Gunting Bali';
+  const sub = q.get('sub') || 'Jajanan renyah dengan bumbu kacang racikan sendiri.';
+  document.body.insertAdjacentHTML('beforeend', `<div class="og"><small>Denpasar · Bali</small><h1></h1><p></p><span class="pill">Pesan via WhatsApp</span></div>`);
+  document.querySelector('.og h1').textContent = t;
+  document.querySelector('.og p').textContent = sub;
+} else {
+  document.body.insertAdjacentHTML('beforeend', `<span class="tag">Foto contoh · ganti dengan foto asli</span>`);
+}
+</script>
+</body>
+</html>
