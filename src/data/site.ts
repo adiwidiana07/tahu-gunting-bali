@@ -86,10 +86,8 @@ export const site = {
     geo: { latitude: -8.5406, longitude: 115.2636 },
   },
 
-  // TODO: jam buka asli
   hours: [
-    { label: 'Senin–Sabtu', days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '15:00', closes: '21:00' },
-    { label: 'Minggu', days: ['Sunday'], opens: '16:00', closes: '21:00' },
+    { label: 'Setiap hari', days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '15:00', closes: '21:00' },
   ] satisfies OpeningHours[],
 
   // TODO: kisaran harga untuk Google, mis. "Rp10.000–Rp25.000"
