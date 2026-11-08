@@ -21,6 +21,7 @@ const { about, menu } = site;
         loading="lazy"
         decoding="async"
         class="aspect-[4/5] w-full rounded-2xl object-cover shadow-xl shadow-ink/15"
+        style={about.image.position && `object-position: ${about.image.position}`}
       />
     </div>
 

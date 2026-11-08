@@ -35,7 +35,6 @@ Setiap baris bertanda `TODO` masih berisi data contoh. Jalankan `pnpm todo` untu
 | Menu & harga | `menu` | Harga tanpa titik, mis. `10000`. Kosongkan (`[]`) untuk menyembunyikan menu |
 | Cerita usaha | `about.paragraphs` | 2–3 paragraf pendek |
 | Instagram / TikTok | `socials` | Hapus baris yang tidak dipakai |
-| GoFood / GrabFood / ShopeeFood | `delivery` | Hapus baris yang tidak ada |
 
 ### Mengganti foto
 

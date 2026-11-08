@@ -8,14 +8,14 @@
  */
 import type { ImageMetadata } from 'astro';
 
-import heroImage from '../assets/hero/hero.jpg';
-import aboutImage from '../assets/about/dapur.jpg';
-import gallery01 from '../assets/gallery/01-tahu-gunting-original.jpg';
-import gallery02 from '../assets/gallery/02-tahu-renyah-close-up.jpg';
-import gallery03 from '../assets/gallery/03-bumbu-kacang.jpg';
-import gallery04 from '../assets/gallery/04-proses-menggoreng.jpg';
-import gallery05 from '../assets/gallery/05-tahu-gunting-bungkus.jpg';
-import gallery06 from '../assets/gallery/06-porsi-jumbo.jpg';
+import heroImage from '../assets/hero/warung-nang-sading.jpg';
+import aboutImage from '../assets/about/nang-sading.jpg';
+import gallery01 from '../assets/gallery/01-tipat-tahu-meja-kayu.jpg';
+import gallery02 from '../assets/gallery/02-meja-racik.jpg';
+import gallery03 from '../assets/gallery/03-tipat-tahu-kerupuk.jpg';
+import gallery04 from '../assets/gallery/04-spanduk-warung.jpg';
+import gallery05 from '../assets/gallery/05-tipat-tahu-tauge.jpg';
+import gallery06 from '../assets/gallery/06-gerobak.jpg';
 
 /* ---------- Tipe data (tidak perlu diubah) ---------- */
 
@@ -42,6 +42,8 @@ export interface Photo {
   src: ImageMetadata;
   /** Deskripsi foto dalam Bahasa Indonesia (untuk pembaca layar dan Google) */
   alt: string;
+  /** Opsional: bagian foto yang dipertahankan saat foto dipotong (CSS object-position), mis. '100% 50%' = sisi kanan */
+  position?: string;
 }
 
 export interface Highlight {
@@ -56,45 +58,39 @@ export interface SocialLink {
   url: string;
 }
 
-export interface DeliveryLink {
-  name: 'GoFood' | 'GrabFood' | 'ShopeeFood';
-  url: string;
-}
-
 /* ---------- Data bisnis ---------- */
 
 export const site = {
-  // TODO: nama brand asli
-  name: 'Tahu Gunting Pak Made',
+  name: 'Tipat Tahu Nang Sading',
   // TODO: tagline asli
-  tagline: 'Renyah Sampai Gigitan Terakhir',
+  tagline: 'Tipat Tahu Bumbu Kacang Khas Bali',
 
   seo: {
     // TODO: sesuaikan nama brand dan kota (maks. ±60 karakter)
-    title: 'Tahu Gunting Pak Made – Jajanan Renyah di Denpasar, Bali',
+    title: 'Tipat Tahu Nang Sading – Tipat Tahu di Mas, Ubud, Gianyar',
     // TODO: sesuaikan (140–160 karakter)
     description:
-      'Tahu gunting renyah dengan bumbu kacang racikan sendiri, digoreng segar setiap hari di Denpasar, Bali. Mulai Rp10.000, pesan langsung via WhatsApp.',
+      'Tipat tahu dengan tauge segar dan bumbu kacang ulek racikan sendiri di Jl. Raya Mas, Ubud, Gianyar. Mulai Rp10.000 seporsi, pesan langsung via WhatsApp.',
   },
 
   whatsapp: {
     // TODO: nomor WhatsApp asli, format 62 tanpa 0 di depan, tanpa spasi/tanda +
     number: '6281234567890',
     // Pesan otomatis saat pengunjung membuka chat
-    message: 'Halo, saya mau pesan tahu gunting',
+    message: 'Halo, saya mau pesan tipat tahu',
   },
 
   address: {
-    // TODO: alamat lengkap
-    street: 'Jl. Contoh Raya No. 12, Sumerta Kelod',
-    city: 'Denpasar',
-    region: 'Bali',
-    postalCode: '80239',
+    // Sesuai spanduk warung. Tambahkan nomor jika ada.
+    street: 'Jl. Raya Mas, Banjar Batanancak, Desa Mas',
+    city: 'Ubud',
+    region: 'Gianyar, Bali',
+    postalCode: '80571',
     country: 'ID',
     // TODO: link "Bagikan" dari Google Maps lokasi warung
-    mapsUrl: 'https://maps.google.com/?q=Denpasar,+Bali',
-    // TODO: koordinat warung (klik kanan di Google Maps untuk menyalin)
-    geo: { latitude: -8.6705, longitude: 115.2126 },
+    mapsUrl: 'https://maps.google.com/?q=Jl.+Raya+Mas,+Mas,+Ubud,+Gianyar,+Bali',
+    // TODO: koordinat warung (klik kanan di Google Maps untuk menyalin). Sekarang masih titik perkiraan Desa Mas.
+    geo: { latitude: -8.5406, longitude: 115.2636 },
   },
 
   // TODO: jam buka asli
@@ -107,63 +103,57 @@ export const site = {
   priceRange: 'Rp10.000–Rp25.000',
 
   hero: {
-    title: 'Tahu Gunting Renyah, Langsung dari Dapur Bali',
-    // TODO: sesuaikan bumbu dan harga termurah
-    subtitle: 'Digunting segar, digoreng sampai keemasan, disiram bumbu kacang gurih. Mulai Rp10.000 seporsi.',
+    title: 'Tipat Tahu Bumbu Kacang, Langsung dari Warung di Mas',
+    // TODO: sesuaikan isian dan harga termurah
+    subtitle: 'Tipat, tahu goreng, dan tauge segar disiram bumbu kacang ulek, lengkap dengan kerupuk. Mulai Rp10.000 seporsi.',
     image: {
       src: heroImage,
-      alt: 'Sepiring tahu gunting goreng keemasan dengan siraman bumbu kacang dan irisan cabai di atas meja kayu',
+      alt: 'Warung Nang Sading: gerobak kayu beratap terpal di pinggir jalan, di depan bangunan beratap genteng',
+      position: '50% 65%',
     } satisfies Photo,
   },
 
   about: {
-    title: 'Dari wajan kecil di Denpasar',
+    title: 'Dari gerobak kecil di Mas, Ubud',
     // TODO: cerita usaha asli (2–3 paragraf pendek)
     paragraphs: [
-      'Berawal dari gerobak kecil di depan rumah, kami menjual tahu gunting untuk tetangga dan anak sekolah sekitar. Resepnya sederhana: tahu segar, minyak bersih, dan bumbu yang diulek setiap pagi.',
-      'Tahu kami ambil dari perajin lokal setiap hari, lalu digunting sesuai pesanan supaya tetap hangat dan renyah saat sampai di tangan Anda.',
+      'Berawal dari gerobak kecil di pinggir Jl. Raya Mas, Nang Sading menjual tipat tahu untuk tetangga, pekerja, dan siapa saja yang lewat. Resepnya sederhana: tipat buatan sendiri, tahu segar, dan bumbu yang diulek setiap pagi.',
+      'Tahu kami ambil dari perajin lokal setiap hari dan digoreng saat dipesan, supaya tetap hangat ketika sampai di piring Anda.',
       'Bumbu kacangnya racikan keluarga: gurih, sedikit manis, dan pedasnya bisa diatur dari tidak pedas sampai pedas mantap.',
     ],
     highlights: [
       { icon: 'leaf', title: 'Tahu segar setiap hari', text: 'Diambil pagi hari dari perajin tahu lokal.' },
       { icon: 'flame', title: 'Bumbu racikan sendiri', text: 'Bumbu kacang diulek sendiri, level pedas bisa dipilih.' },
-      { icon: 'wallet', title: 'Harga ramah kantong', text: 'Seporsi mulai Rp10.000, cocok untuk camilan sore.' },
+      { icon: 'wallet', title: 'Harga ramah kantong', text: 'Seporsi mulai Rp10.000, pas untuk sarapan atau makan siang.' },
     ] satisfies Highlight[],
     image: {
       src: aboutImage,
-      alt: 'Tahu putih segar siap digunting di atas talenan, di samping sepiring tahu gunting yang sudah digoreng',
+      alt: 'Nang Sading berfoto di depan spanduk hijau warungnya yang bertuliskan "Warung Nang Sading Jual Tahu Tipat"',
+      position: '100% 50%',
     } satisfies Photo,
   },
 
   // TODO: menu dan harga asli. Kosongkan array ([]) untuk menyembunyikan daftar menu.
   menu: [
-    { name: 'Tahu Gunting Original', description: 'Bumbu kacang, kecap, dan bawang goreng', price: 10000 },
-    { name: 'Tahu Gunting Pedas', description: 'Ekstra cabai rawit, level 1–5', price: 12000 },
-    { name: 'Tahu Gunting Komplit', description: 'Dengan lontong dan kerupuk', price: 15000 },
-    { name: 'Porsi Jumbo', description: 'Untuk 3–4 orang', price: 25000 },
+    { name: 'Tipat Tahu', description: 'Tipat, tahu goreng, tauge, bumbu kacang, dan kerupuk', price: 10000 },
+    { name: 'Tipat Tahu Pedas', description: 'Ekstra cabai rawit, level 1–5', price: 12000 },
+    { name: 'Tipat Tahu Telur', description: 'Ditambah telur goreng', price: 15000 },
+    { name: 'Tahu Saja (tanpa tipat)', description: 'Tahu goreng, tauge, dan bumbu kacang', price: 10000 },
   ] satisfies MenuItem[],
 
   // Foto galeri: 6 atau 12 foto (kelipatan 6 agar grid selalu penuh), rasio potret 4:5 paling pas. Urutan di sini = urutan tampil.
-  // TODO: ganti dengan foto asli (simpan di src/assets/gallery/) dan perbarui alt-nya
   gallery: [
-    { src: gallery01, alt: 'Tahu gunting original dengan siraman bumbu kacang di piring putih' },
-    { src: gallery02, alt: 'Potongan tahu goreng renyah berwarna keemasan dari dekat' },
-    { src: gallery03, alt: 'Semangkuk bumbu kacang dengan irisan cabai merah' },
-    { src: gallery04, alt: 'Potongan tahu sedang digoreng di wajan berisi minyak panas' },
-    { src: gallery05, alt: 'Tahu gunting dibungkus kertas nasi, siap dibawa pulang' },
-    { src: gallery06, alt: 'Tahu gunting porsi jumbo untuk dimakan bersama' },
+    { src: gallery01, alt: 'Sepiring tipat tahu dengan tauge, bumbu kacang, dan kerupuk di atas meja kayu' },
+    { src: gallery02, alt: 'Meja racik warung: tahu goreng di nampan, panci tipat, dan bumbu-bumbu' },
+    { src: gallery03, alt: 'Tipat tahu dengan siraman bumbu kacang dan kerupuk di piring putih' },
+    { src: gallery04, alt: 'Spanduk hijau bertuliskan "Warung Nang Sading Jual Tahu Tipat, Jl. Raya Mas, Banjar Batanancak"' },
+    { src: gallery05, alt: 'Tipat tahu dengan tauge dan bumbu kacang dari dekat' },
+    { src: gallery06, alt: 'Gerobak warung di pinggir jalan pada pagi hari' },
   ] satisfies Photo[],
 
   // TODO: akun media sosial asli. Hapus baris yang tidak dipakai.
   socials: [
-    { platform: 'instagram', handle: '@tahuguntingpakmade', url: 'https://instagram.com/tahuguntingpakmade' },
-    { platform: 'tiktok', handle: '@tahuguntingpakmade', url: 'https://www.tiktok.com/@tahuguntingpakmade' },
+    { platform: 'instagram', handle: '@tipattahunangsading', url: 'https://instagram.com/tipattahunangsading' },
+    { platform: 'tiktok', handle: '@tipattahunangsading', url: 'https://www.tiktok.com/@tipattahunangsading' },
   ] satisfies SocialLink[],
-
-  // TODO: link toko di aplikasi ojek online. Hapus baris yang tidak ada.
-  delivery: [
-    { name: 'GoFood', url: 'https://gofood.co.id/' },
-    { name: 'GrabFood', url: 'https://food.grab.com/id/id/' },
-    { name: 'ShopeeFood', url: 'https://shopee.co.id/m/shopeefood' },
-  ] satisfies DeliveryLink[],
 };

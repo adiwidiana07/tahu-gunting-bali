@@ -17,7 +17,8 @@ const today = site.hours[0];
     loading="eager"
     fetchpriority="high"
     decoding="async"
-    class="absolute inset-0 -z-20 size-full object-cover object-[68%_50%]"
+    class="absolute inset-0 -z-20 size-full object-cover"
+    style={`object-position: ${site.hero.image.position ?? '68% 50%'}`}
   />
   <div class="absolute inset-0 -z-10 bg-linear-to-t from-ink via-ink/70 to-ink/35 md:bg-linear-to-r md:from-ink/95 md:via-ink/60 md:to-ink/10"></div>
 

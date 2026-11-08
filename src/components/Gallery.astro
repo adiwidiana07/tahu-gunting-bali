@@ -2,11 +2,11 @@
 import { Picture, getImage } from 'astro:assets';
 import Ornament from './Ornament.astro';
 import Icon from './Icon.astro';
-import { site } from '../data/site';
+import { site, type Photo } from '../data/site';
 
 // Versi besar untuk lightbox (dimuat hanya saat foto dibuka).
 const photos = await Promise.all(
-  site.gallery.map(async (photo) => {
+  site.gallery.map(async (photo: Photo) => {
     const large = await getImage({ src: photo.src, widths: [800, 1200, 1600], format: 'webp' });
     return { ...photo, large: { src: large.src, srcset: large.srcSet.attribute } };
   }),
@@ -44,6 +44,7 @@ const photos = await Promise.all(
                 loading="lazy"
                 decoding="async"
                 class="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                style={photo.position && `object-position: ${photo.position}`}
               />
               <span class="absolute right-2.5 bottom-2.5 grid size-9 place-items-center rounded-full bg-cream/90 text-ink opacity-0 shadow transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden="true">
                 <Icon name="arrow-right" size={18} class="-rotate-45" />

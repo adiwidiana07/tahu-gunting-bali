@@ -12,8 +12,8 @@ const socialLabel = { instagram: 'Instagram', tiktok: 'TikTok' } as const;
     <div class="reveal mx-auto max-w-2xl text-center">
       <Ornament />
       <p class="eyebrow mt-4 text-chili">Kontak &amp; lokasi</p>
-      <h2 id="contact-title" class="section-title">Mampir atau pesan antar</h2>
-      <p class="mt-4 text-lg text-ink-soft">Pesan lewat WhatsApp, ambil sendiri di warung, atau pesan lewat aplikasi ojek online.</p>
+      <h2 id="contact-title" class="section-title">Mampir ke warung kami</h2>
+      <p class="mt-4 text-lg text-ink-soft">Pesan dulu lewat WhatsApp, lalu ambil di warung, atau langsung mampir dan makan di tempat.</p>
     </div>
 
     <div class="mt-12 grid gap-6 lg:grid-cols-5">
@@ -64,24 +64,6 @@ const socialLabel = { instagram: 'Instagram', tiktok: 'TikTok' } as const;
           <Icon name="whatsapp" size={22} /> Pesan via WhatsApp
         </a>
 
-        {
-          site.delivery.length > 0 && (
-            <div class="mt-8 border-t border-ink/10 pt-6">
-              <p class="flex items-center gap-2 font-semibold">
-                <Icon name="bike" size={20} class="text-leaf" /> Pesan antar
-              </p>
-              <ul class="mt-3 flex flex-wrap gap-2">
-                {site.delivery.map((d) => (
-                  <li>
-                    <a href={d.url} target="_blank" rel="noopener" class="inline-flex min-h-11 items-center rounded-full border-2 border-leaf/25 px-4 text-sm font-semibold text-leaf hover:border-leaf hover:bg-leaf hover:text-white">
-                      {d.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        }
 
         {
           site.socials.length > 0 && (
