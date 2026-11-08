@@ -1,7 +1,7 @@
 /**
  * SEMUA ISI WEBSITE ADA DI FILE INI.
  *
- * Ganti teks, nomor WhatsApp, alamat, jam buka, menu, dan foto di sini;
+ * Ganti teks, nomor WhatsApp, alamat, jam buka, harga, dan foto di sini;
  * komponen lain tidak perlu disentuh. Baris bertanda `TODO` masih berisi
  * data contoh dan wajib diganti dengan data asli sebelum situs dipublikasikan.
  * Cari semua yang belum diganti dengan:  grep -rn "TODO" src
@@ -29,13 +29,6 @@ export interface OpeningHours {
   /** Format 24 jam "HH:MM" */
   opens: string;
   closes: string;
-}
-
-export interface MenuItem {
-  name: string;
-  description?: string;
-  /** Harga dalam rupiah, tanpa titik. Contoh: 10000 */
-  price: number;
 }
 
 export interface Photo {
@@ -133,13 +126,8 @@ export const site = {
     } satisfies Photo,
   },
 
-  // TODO: menu dan harga asli. Kosongkan array ([]) untuk menyembunyikan daftar menu.
-  menu: [
-    { name: 'Tipat Tahu', description: 'Tipat, tahu goreng, tauge, bumbu kacang, dan kerupuk', price: 5000 },
-    { name: 'Tipat Tahu Pedas', description: 'Ekstra cabai rawit, level 1–5', price: 7000 },
-    { name: 'Tipat Tahu Telur', description: 'Ditambah telur goreng', price: 10000 },
-    { name: 'Tahu Saja (tanpa tipat)', description: 'Tahu goreng, tauge, dan bumbu kacang', price: 5000 },
-  ] satisfies MenuItem[],
+  // Harga termurah seporsi, dalam rupiah tanpa titik. Tampil sebagai "Harga mulai dari Rp5.000".
+  startingPrice: 5000,
 
   // Foto galeri: 6 atau 12 foto (kelipatan 6 agar grid selalu penuh), rasio potret 4:5 paling pas. Urutan di sini = urutan tampil.
   gallery: [

@@ -3,7 +3,7 @@
 Landing page satu halaman untuk usaha tahu gunting di Bali. Situsnya statis, sangat ringan untuk HP, dan semua tombol pesan mengarah ke WhatsApp.
 
 - **Stack:** Astro 7 (output statis), Tailwind CSS v4, TypeScript strict, pnpm
-- **Section:** Hero, Tentang (About + menu), Galeri (dengan lightbox), Kontak, Footer, dan tombol WhatsApp melayang
+- **Section:** Hero, Tentang (About + harga mulai dari), Galeri (dengan lightbox), Kontak, Footer, dan tombol WhatsApp melayang
 - **Hasil Lighthouse mobile:** 100 / 100 / 100 / 100, total halaman awal sekitar 144 KB, JavaScript sekitar 2 KB
 
 ## Menjalankan di komputer
@@ -32,7 +32,7 @@ Setiap baris bertanda `TODO` masih berisi data contoh. Jalankan `pnpm todo` untu
 | Pesan otomatis WhatsApp | `whatsapp.message` | |
 | Alamat, link & koordinat peta | `address` | Koordinat: klik kanan lokasi di Google Maps, lalu klik angka koordinatnya untuk menyalin |
 | Jam buka | `hours` | `days` ditulis dalam bahasa Inggris (untuk Google) |
-| Menu & harga | `menu` | Harga tanpa titik, mis. `10000`. Kosongkan (`[]`) untuk menyembunyikan menu |
+| Harga mulai dari | `startingPrice` | Harga termurah seporsi, tanpa titik, mis. `5000` |
 | Cerita usaha | `about.paragraphs` | 2–3 paragraf pendek |
 | Instagram / TikTok | `socials` | Hapus baris yang tidak dipakai |
 
