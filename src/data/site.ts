@@ -70,7 +70,7 @@ export const site = {
     title: 'Tipat Tahu Nang Sading – Tipat Tahu di Mas, Ubud, Gianyar',
     // TODO: sesuaikan (140–160 karakter)
     description:
-      'Tipat tahu dengan tauge segar dan bumbu kacang ulek racikan sendiri di Jl. Raya Mas, Ubud, Gianyar. Mulai Rp10.000 seporsi, pesan langsung via WhatsApp.',
+      'Tipat tahu dengan tauge segar dan bumbu kacang ulek racikan sendiri di Jl. Raya Mas, Ubud, Gianyar. Mulai Rp5.000 seporsi, pesan langsung via WhatsApp.',
   },
 
   whatsapp: {
@@ -100,12 +100,12 @@ export const site = {
   ] satisfies OpeningHours[],
 
   // TODO: kisaran harga untuk Google, mis. "Rp10.000–Rp25.000"
-  priceRange: 'Rp10.000–Rp25.000',
+  priceRange: 'Rp5.000–Rp10.000',
 
   hero: {
     title: 'Tipat Tahu Bumbu Kacang, Langsung dari Warung di Mas',
     // TODO: sesuaikan isian dan harga termurah
-    subtitle: 'Tipat, tahu goreng, dan tauge segar disiram bumbu kacang ulek, lengkap dengan kerupuk. Mulai Rp10.000 seporsi.',
+    subtitle: 'Tipat, tahu goreng, dan tauge segar disiram bumbu kacang ulek, lengkap dengan kerupuk. Mulai Rp5.000 seporsi.',
     image: {
       src: heroImage,
       alt: 'Warung Nang Sading: gerobak kayu beratap terpal di pinggir jalan, di depan bangunan beratap genteng',
@@ -124,7 +124,7 @@ export const site = {
     highlights: [
       { icon: 'leaf', title: 'Tahu segar setiap hari', text: 'Diambil pagi hari dari perajin tahu lokal.' },
       { icon: 'flame', title: 'Bumbu racikan sendiri', text: 'Bumbu kacang diulek sendiri, level pedas bisa dipilih.' },
-      { icon: 'wallet', title: 'Harga ramah kantong', text: 'Seporsi mulai Rp10.000, pas untuk sarapan atau makan siang.' },
+      { icon: 'wallet', title: 'Harga ramah kantong', text: 'Seporsi mulai Rp5.000, pas untuk sarapan atau makan siang.' },
     ] satisfies Highlight[],
     image: {
       src: aboutImage,
@@ -135,10 +135,10 @@ export const site = {
 
   // TODO: menu dan harga asli. Kosongkan array ([]) untuk menyembunyikan daftar menu.
   menu: [
-    { name: 'Tipat Tahu', description: 'Tipat, tahu goreng, tauge, bumbu kacang, dan kerupuk', price: 10000 },
-    { name: 'Tipat Tahu Pedas', description: 'Ekstra cabai rawit, level 1–5', price: 12000 },
-    { name: 'Tipat Tahu Telur', description: 'Ditambah telur goreng', price: 15000 },
-    { name: 'Tahu Saja (tanpa tipat)', description: 'Tahu goreng, tauge, dan bumbu kacang', price: 10000 },
+    { name: 'Tipat Tahu', description: 'Tipat, tahu goreng, tauge, bumbu kacang, dan kerupuk', price: 5000 },
+    { name: 'Tipat Tahu Pedas', description: 'Ekstra cabai rawit, level 1–5', price: 7000 },
+    { name: 'Tipat Tahu Telur', description: 'Ditambah telur goreng', price: 10000 },
+    { name: 'Tahu Saja (tanpa tipat)', description: 'Tahu goreng, tauge, dan bumbu kacang', price: 5000 },
   ] satisfies MenuItem[],
 
   // Foto galeri: 6 atau 12 foto (kelipatan 6 agar grid selalu penuh), rasio potret 4:5 paling pas. Urutan di sini = urutan tampil.
