@@ -68,6 +68,11 @@
     text-wrap: pretty;
   }
 
+  /* Pengaman: elemen dekoratif tidak boleh membuat halaman bisa digeser ke samping di HP */
+  body {
+    overflow-x: clip;
+  }
+
   /* Kunci scroll halaman saat lightbox terbuka */
   html:has(dialog[open]) {
     overflow: hidden;

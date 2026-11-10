@@ -67,8 +67,8 @@ export const site = {
   },
 
   whatsapp: {
-    // TODO: nomor WhatsApp asli, format 62 tanpa 0 di depan, tanpa spasi/tanda +
-    number: '6281234567890',
+    // Format 62 tanpa 0 di depan, tanpa spasi/tanda +
+    number: '6282340877933',
     // Pesan otomatis saat pengunjung membuka chat
     message: 'Halo, saya mau pesan tipat tahu',
   },
